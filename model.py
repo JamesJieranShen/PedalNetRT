@@ -115,7 +115,8 @@ class PedalNet(pl.LightningModule):
             num_repeat=hparams["num_repeat"],
             kernel_size=hparams["kernel_size"],
         )
-        self.hparams = hparams
+        self.hparams.update(hparams)
+        self.save_hyperparameters()
 
     def prepare_data(self):
         ds = lambda x, y: TensorDataset(torch.from_numpy(x), torch.from_numpy(y))
